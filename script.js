@@ -18,4 +18,21 @@ if (newPiece && !collectedPieces.includes(newPiece)) {
 
 // 저장된 퍼즐만 보이기
 document.querySelectorAll(".piece").forEach(function(piece) {
-   ...
+    piece.style.display = "none";
+});
+
+collectedPieces.forEach(function(pieceNumber) {
+
+    const piece = document.querySelector(".piece" + pieceNumber);
+
+    if (piece) {
+        piece.style.display = "block";
+    }
+
+});
+
+
+// 6개 모두 모으면 완성
+if (collectedPieces.length === 6) {
+    console.log("퍼즐 완성!");
+}
