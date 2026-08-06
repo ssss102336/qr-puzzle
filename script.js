@@ -1,4 +1,4 @@
-localStorage.removeItem("collectedPieces");
+localStorage.clear();
 const params = new URLSearchParams(window.location.search);
 
 // QR에서 퍼즐 번호 받기
