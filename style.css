@@ -1,25 +1,17 @@
-body{
-
-    margin:0;
-    background:#08142d;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-
+body {
+    margin: 0;
+    background: #08142d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-.container{
-
-    text-align:center;
-
+.container {
+    text-align: center;
+    color: white;
 }
 
-#board{
-
-    width:400px;
-
-}
 .puzzle-area {
     position: relative;
     display: inline-block;
@@ -27,50 +19,25 @@ body{
 
 #board {
     display: block;
-    width: 100%;
+    width: 400px;
 }
 
 .piece {
     position: absolute;
+    width: 400px;
     display: none;
 }
 
+/* 퍼즐 위치 */
 .piece1 {
-    display: block;
     top: 0;
     left: 0;
 }
 
 .piece2 {
-    display: block;
     top: 0;
-    left: 0%;
-}
-
-.piece3 {
-    display: block;
-    top: 0;
-    left: 0%;
-}
-
-.piece4 {
-    display: block;
-    top: 0%;
     left: 0;
 }
 
-.piece5 {
-    display: block;
-    top: 0%;
-    left: 0%;
-}
-
-.piece6 {
-    display: block;
-    top: 0%;
-    left: 0%;
-}
-.piece {
-    display: none;
-    position: absolute;
-}
+.piece3 {
+    top: 0...
