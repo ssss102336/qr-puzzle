@@ -25,10 +25,9 @@ body {
 .piece {
     position: absolute;
     width: 400px;
-    display: none;
+    display: none !important;
 }
 
-/* 퍼즐 위치 */
 .piece1 {
     top: 0;
     left: 0;
@@ -40,4 +39,21 @@ body {
 }
 
 .piece3 {
-    top: 0...
+    top: 0;
+    left: 0;
+}
+
+.piece4 {
+    top: 0;
+    left: 0;
+}
+
+.piece5 {
+    top: 0;
+    left: 0;
+}
+
+.piece6 {
+    top: 0;
+    left: 0;
+}
