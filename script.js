@@ -32,6 +32,10 @@ collectedPieces.forEach(function(pieceNumber) {
     }
 });
 
+<button onclick="location.href='https://ssss102336.github.io/planet/?camera=on'">
+    📷 다음 QR 찾기
+</button>
+
 // 퍼즐 완성 확인
 if (collectedPieces.length === 6) {
     console.log("퍼즐 완성!");
