@@ -4,7 +4,7 @@ const params = new URLSearchParams(window.location.search);
 const newPiece = params.get("piece");
 
 // 기존에 모은 퍼즐 가져오기
-let collectedPieces = JSON.parse(localStorage.getItem("collectedPieces")) || [];
+let collectedPieces = JSON.parse(sessionStorage.getItem("collectedPieces")) || [];
 
 // 새 퍼즐 추가
 if (newPiece && !collectedPieces.includes(newPiece)) {
