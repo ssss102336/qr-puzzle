@@ -3,14 +3,15 @@ const params = new URLSearchParams(window.location.search);
 // QR에서 퍼즐 번호 받기
 const newPiece = params.get("piece");
 
-// 기존에 모은 퍼즐 가져오기
-let collectedPieces = JSON.parse(sessionStorage.getItem("collectedPieces")) || [];
+// 현재 브라우저 세션에서 모은 퍼즐 가져오기
+let collectedPieces =
+    JSON.parse(sessionStorage.getItem("collectedPieces")) || [];
 
 // 새 퍼즐 추가
 if (newPiece && !collectedPieces.includes(newPiece)) {
     collectedPieces.push(newPiece);
 
-    localStorage.setItem(
+    sessionStorage.setItem(
         "collectedPieces",
         JSON.stringify(collectedPieces)
     );
@@ -29,7 +30,6 @@ collectedPieces.forEach(function(pieceNumber) {
     if (piece) {
         piece.style.display = "block";
     }
-
 });
 
 // 퍼즐 완성 확인
