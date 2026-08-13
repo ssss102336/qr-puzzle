@@ -1,705 +1,221 @@
-/* =========================
-   기본 설정
-========================= */
+<!DOCTYPE html>
+<html lang="ko">
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+<head>
+    <meta charset="UTF-8">
 
-html,
-body {
-    width: 100%;
-    min-height: 100%;
-}
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-body {
+    <title>어린왕자의 퍼즐</title>
 
-    background: #080d1c;
+    <link rel="stylesheet" href="style.css">
+</head>
 
-    color: #eee8dc;
 
-    font-family:
-        "Noto Serif KR",
-        "Noto Serif",
-        serif;
+<body>
 
-    overflow-x: hidden;
+<div class="page">
 
-}
 
+    <!-- =========================
+         수집 화면
+    ========================== -->
 
-/* =========================
-   전체
-========================= */
+    <main class="collection-screen" id="collectionScreen">
 
-.page {
+        <div class="small-title">
+            THE LITTLE PRINCE · JOURNEY
+        </div>
 
-    min-height: 100vh;
 
-    width: 100%;
+        <!-- 현재 수집 상태 -->
 
-    position: relative;
+        <div class="piece-number" id="pieceNumber">
+            PUZZLE
+        </div>
 
-}
 
+        <h1 id="mainTitle">
+            퍼즐 조각을 찾았습니다.
+        </h1>
 
-/* =========================
-   공통 작은 제목
-========================= */
 
-.small-title {
+        <p class="description" id="description">
+            어린왕자의 여정에 새로운 조각이<br>
+            하나 더 모였습니다.
+        </p>
 
-    font-size: 10px;
 
-    letter-spacing: 4px;
+        <!-- 수집 현황 -->
 
-    color: #9b99a8;
+        <div class="collection-status">
 
-    margin-bottom: 25px;
+            <div class="status-title">
+                JOURNEY PIECES
+            </div>
 
-}
+            <div
+                class="piece-dots"
+                id="pieceDots">
+            </div>
 
+            <div
+                class="status-count"
+                id="statusCount">
+                0 / 6
+            </div>
 
-/* =========================
-   수집 화면
-========================= */
+        </div>
 
-.collection-screen {
 
-    min-height: 100vh;
+        <!-- =====================
+             일반 상태
+        ====================== -->
 
-    width: 100%;
+        <button
+            class="back-button"
+            id="backButton"
+            onclick="goBackToPlanet()"
+        >
+            ← 돌아가기
+        </button>
 
-    display: flex;
 
-    flex-direction: column;
+        <!-- =====================
+             6개 완성 상태
+        ====================== -->
 
-    justify-content: center;
+        <button
+            class="complete-button"
+            id="completeButton"
+            onclick="showFinalImage()"
+        >
+            새로운 이미지 보기 →
+        </button>
 
-    align-items: center;
 
-    text-align: center;
+    </main>
 
-    padding:
-        45px 25px;
 
-    background:
 
-        radial-gradient(
-            circle at 50% 35%,
-            rgba(75, 83, 130, .25),
-            transparent 38%
-        ),
+    <!-- =========================
+         완성 이미지 화면
+    ========================== -->
 
-        radial-gradient(
-            circle at 20% 80%,
-            rgba(100, 70, 100, .15),
-            transparent 30%
-        ),
+    <main
+        class="final-screen"
+        id="finalScreen"
+    >
 
-        #080d1c;
+        <div class="small-title">
+            THE JOURNEY IS COMPLETE
+        </div>
 
-}
 
+        <h1>
+            여섯 개의 조각이<br>
+            하나의 이야기가 되었습니다.
+        </h1>
 
-/* =========================
-   퍼즐 번호
-========================= */
 
-.piece-number {
+        <p class="final-description">
+            어린왕자가 지나온 여정처럼<br>
+            흩어져 있던 조각들이 하나의 모습으로 완성되었습니다.
+        </p>
 
-    font-size: 11px;
 
-    letter-spacing: 4px;
+        <!-- 랜덤 이미지 -->
 
-    color: #77798b;
+        <div class="final-image-wrap">
 
-    margin-bottom: 18px;
+            <img
+                id="finalImage"
+                src=""
+                alt="완성된 어린왕자의 이미지"
+            >
 
-}
+        </div>
 
 
-/* =========================
-   제목
-========================= */
+        <!-- 이미지 저장 -->
 
-.collection-screen h1 {
+        <button
+            class="save-button"
+            onclick="saveImage()"
+        >
+            이미지 저장하기
+        </button>
 
-    font-size:
-        clamp(25px, 7vw, 40px);
 
-    font-weight: 400;
+        <!-- 다음 여행 -->
 
-    line-height: 1.55;
+        <button
+            class="next-button"
+            onclick="showLastGuide()"
+        >
+            다음 여행으로 →
+        </button>
 
-    letter-spacing: 1px;
 
-    word-break: keep-all;
+    </main>
 
-}
 
 
-/* =========================
-   설명
-========================= */
+    <!-- =========================
+         4층 안내
+    ========================== -->
 
-.description {
+    <main
+        class="last-guide"
+        id="lastGuide"
+    >
 
-    margin-top: 20px;
+        <div class="guide-content">
 
-    font-size:
-        clamp(13px, 3.5vw, 16px);
+            <div class="small-title">
+                THE FINAL JOURNEY
+            </div>
 
-    line-height: 2;
 
-    color: #c8c4cb;
+            <div class="guide-line"></div>
 
-    word-break: keep-all;
 
-}
+            <h1>
+                어린왕자의<br>
+                마지막 여행을 따라가세요.
+            </h1>
 
 
-/* =========================
-   수집 현황
-========================= */
+            <p>
+                여섯 개의 행성을 지나며<br>
+                어린왕자는 수많은 사람과 경험을 만났습니다.
+                <br><br>
 
-.collection-status {
+                그리고 이제 그 여행의<br>
+                <strong>마지막 종착지</strong>를 향해 나아갑니다.
+            </p>
 
-    margin-top: 42px;
 
-    width: min(90vw, 330px);
+            <div class="guide-line"></div>
 
-    padding: 22px 20px;
 
-    border:
+            <p class="guide-sub">
+                이제 <strong>4층</strong>으로 올라가<br>
+                어린왕자의 마지막 여행을 만나보세요.
+            </p>
 
-        1px solid
-        rgba(255,255,255,.12);
+        </div>
 
-    border-radius: 16px;
+    </main>
 
-    background:
-        rgba(255,255,255,.035);
 
-}
+</div>
 
 
-.status-title {
+<script src="script.js"></script>
 
-    font-size: 9px;
-
-    letter-spacing: 3px;
-
-    color: #858493;
-
-    margin-bottom: 18px;
-
-}
-
-
-.piece-dots {
-
-    display: flex;
-
-    justify-content: center;
-
-    gap: 12px;
-
-}
-
-
-.piece-dot {
-
-    width: 9px;
-
-    height: 9px;
-
-    border-radius: 50%;
-
-    border:
-        1px solid
-        rgba(255,255,255,.35);
-
-    background:
-        transparent;
-
-    transition: .4s ease;
-
-}
-
-
-.piece-dot.collected {
-
-    background: #eee8dc;
-
-    box-shadow:
-        0 0 10px
-        rgba(238,232,220,.5);
-
-}
-
-
-.status-count {
-
-    margin-top: 15px;
-
-    font-size: 12px;
-
-    color: #aaa7b5;
-
-}
-
-
-/* =========================
-   돌아가기
-========================= */
-
-.back-button {
-
-    margin-top: 35px;
-
-    padding:
-        13px 28px;
-
-    border-radius: 30px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.3);
-
-    background:
-        rgba(255,255,255,.05);
-
-    color: #eee8dc;
-
-    font-family: inherit;
-
-    font-size: 13px;
-
-    cursor: pointer;
-
-    transition: .3s;
-
-}
-
-
-.back-button:hover {
-
-    background:
-        rgba(255,255,255,.12);
-
-    transform:
-        translateY(-2px);
-
-}
-
-
-/* =========================
-   완성 버튼
-========================= */
-
-.complete-button {
-
-    display: none;
-
-    margin-top: 35px;
-
-    padding:
-        15px 30px;
-
-    border: none;
-
-    border-radius: 30px;
-
-    background: #eee8dc;
-
-    color: #151923;
-
-    font-family: inherit;
-
-    font-size: 13px;
-
-    cursor: pointer;
-
-    transition: .3s;
-
-}
-
-
-.complete-button.show {
-
-    display: block;
-
-}
-
-
-.complete-button:hover {
-
-    transform:
-        translateY(-2px);
-
-}
-
-
-/* =========================
-   완성 이미지 화면
-========================= */
-
-.final-screen {
-
-    display: none;
-
-    min-height: 100vh;
-
-    width: 100%;
-
-    padding:
-        55px 22px 60px;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    text-align: center;
-
-    background:
-
-        radial-gradient(
-            circle at 50% 30%,
-            rgba(75, 83, 130, .25),
-            transparent 40%
-        ),
-
-        #080d1c;
-
-}
-
-
-.final-screen.show {
-
-    display: flex;
-
-}
-
-
-.final-screen h1 {
-
-    font-size:
-        clamp(24px, 6.5vw, 38px);
-
-    font-weight: 400;
-
-    line-height: 1.55;
-
-    word-break: keep-all;
-
-}
-
-
-.final-description {
-
-    margin-top: 20px;
-
-    font-size: 13px;
-
-    line-height: 2;
-
-    color: #bbb7c0;
-
-    word-break: keep-all;
-
-}
-
-
-/* =========================
-   완성 이미지
-========================= */
-
-.final-image-wrap {
-
-    width: 100%;
-
-    max-width: 500px;
-
-    margin-top: 35px;
-
-    padding: 12px;
-
-    border-radius: 14px;
-
-    background:
-        rgba(255,255,255,.05);
-
-    border:
-        1px solid
-        rgba(255,255,255,.12);
-
-}
-
-
-.final-image-wrap img {
-
-    display: block;
-
-    width: 100%;
-
-    height: auto;
-
-    max-height: 58vh;
-
-    object-fit: contain;
-
-    border-radius: 8px;
-
-}
-
-
-/* =========================
-   이미지 저장
-========================= */
-
-.save-button {
-
-    margin-top: 25px;
-
-    padding:
-        13px 27px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.3);
-
-    border-radius: 30px;
-
-    background:
-        rgba(255,255,255,.06);
-
-    color: #eee8dc;
-
-    font-family: inherit;
-
-    font-size: 13px;
-
-    cursor: pointer;
-
-}
-
-
-.save-button:hover {
-
-    background:
-        rgba(255,255,255,.12);
-
-}
-
-
-/* =========================
-   다음 여행
-========================= */
-
-.next-button {
-
-    margin-top: 14px;
-
-    padding:
-        14px 30px;
-
-    border: none;
-
-    border-radius: 30px;
-
-    background: #eee8dc;
-
-    color: #171a25;
-
-    font-family: inherit;
-
-    font-size: 13px;
-
-    cursor: pointer;
-
-    transition: .3s;
-
-}
-
-
-.next-button:hover {
-
-    transform:
-        translateY(-2px);
-
-}
-
-
-/* =========================
-   4층 안내
-========================= */
-
-.last-guide {
-
-    display: none;
-
-    min-height: 100vh;
-
-    width: 100%;
-
-    padding:
-        50px 25px;
-
-    align-items: center;
-
-    justify-content: center;
-
-    text-align: center;
-
-    background:
-
-        radial-gradient(
-            circle at 50% 40%,
-            rgba(75, 83, 130, .28),
-            transparent 42%
-        ),
-
-        #080d1c;
-
-}
-
-
-.last-guide.show {
-
-    display: flex;
-
-}
-
-
-.guide-content {
-
-    width: 100%;
-
-    max-width: 600px;
-
-}
-
-
-.guide-line {
-
-    width: 42px;
-
-    height: 1px;
-
-    margin: 30px auto;
-
-    background:
-        rgba(238,232,220,.4);
-
-}
-
-
-.guide-content h1 {
-
-    font-size:
-        clamp(27px, 7vw, 45px);
-
-    font-weight: 400;
-
-    line-height: 1.55;
-
-    word-break: keep-all;
-
-}
-
-
-.guide-content p {
-
-    margin-top: 25px;
-
-    font-size:
-        clamp(13px, 3.5vw, 16px);
-
-    line-height: 2.1;
-
-    color: #c8c4cb;
-
-    word-break: keep-all;
-
-}
-
-
-.guide-content strong {
-
-    color: #eee8dc;
-
-    font-weight: 500;
-
-}
-
-
-.guide-sub {
-
-    font-size: 13px !important;
-
-    color: #9e9ba8 !important;
-
-}
-
-
-/* =========================
-   작은 휴대폰
-========================= */
-
-@media (max-width: 380px) {
-
-    .collection-screen {
-
-        padding:
-            35px 18px;
-
-    }
-
-    .collection-status {
-
-        margin-top: 32px;
-
-    }
-
-    .piece-dots {
-
-        gap: 9px;
-
-    }
-
-    .piece-dot {
-
-        width: 8px;
-
-        height: 8px;
-
-    }
-
-}
-
-
-/* =========================
-   가로 화면 방지
-========================= */
-
-@media (orientation: landscape) and (max-height: 500px) {
-
-    .collection-screen {
-
-        min-height: 100vh;
-
-        padding:
-            25px;
-
-    }
-
-    .collection-status {
-
-        margin-top: 20px;
-
-    }
-
-}
+</body>
+</html>
