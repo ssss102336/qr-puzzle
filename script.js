@@ -6,7 +6,6 @@ const params = new URLSearchParams(window.location.search);
 
 const newPiece = params.get("piece");
 
-
 /* =========================
    현재 세션에서 모은 퍼즐
 ========================= */
