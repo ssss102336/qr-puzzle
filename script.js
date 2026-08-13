@@ -1,13 +1,16 @@
 /* =========================
-   QR에서 퍼즐 번호 받기
+   QR에서 퍼즐 번호 가져오기
 ========================= */
 
-const params = new URLSearchParams(window.location.search);
+const params =
+    new URLSearchParams(window.location.search);
 
-const newPiece = params.get("piece");
+const newPiece =
+    params.get("piece");
+
 
 /* =========================
-   현재 세션에서 모은 퍼즐
+   기존에 모은 퍼즐 가져오기
 ========================= */
 
 let collectedPieces =
@@ -17,99 +20,109 @@ let collectedPieces =
 
 
 /* =========================
-   퍼즐 이미지
-========================= */
-
-const pieceImages = {
-
-    "1": "images/geo.1.png",
-
-    "2": "images/King.2.png",
-
-    "3": "images/lamp.3.png",
-
-    "4": "images/drunk.4.png",
-
-    "5": "images/business.5.png",
-
-    "6": "images/vain.6.png"
-
-};
-
-
-/* =========================
    새 퍼즐 추가
 ========================= */
 
 if (
     newPiece &&
-    pieceImages[newPiece] &&
-    !collectedPieces.includes(newPiece)
+    ["1", "2", "3", "4", "5", "6"].includes(newPiece)
 ) {
 
-    collectedPieces.push(newPiece);
+    if (!collectedPieces.includes(newPiece)) {
 
-    sessionStorage.setItem(
-        "collectedPieces",
-        JSON.stringify(collectedPieces)
-    );
+        collectedPieces.push(newPiece);
+
+        sessionStorage.setItem(
+            "collectedPieces",
+            JSON.stringify(collectedPieces)
+        );
+
+    }
 
 }
 
 
 /* =========================
-   현재 퍼즐 이미지
+   퍼즐 조각 전부 숨기기
 ========================= */
 
-const pieceImage =
-    document.getElementById("pieceImage");
+const pieces =
+    document.querySelectorAll(".piece");
 
 
-if (newPiece && pieceImages[newPiece]) {
+pieces.forEach(function(piece) {
 
-    pieceImage.src =
-        pieceImages[newPiece];
+    piece.style.display = "none";
 
-} else {
-
-    pieceImage.style.display = "none";
-
-}
+});
 
 
 /* =========================
-   퍼즐 개수 표시
+   모은 조각만 표시
+========================= */
+
+collectedPieces.forEach(function(pieceNumber) {
+
+    const piece =
+        document.querySelector(
+            ".piece" + pieceNumber
+        );
+
+    if (piece) {
+
+        piece.style.display = "block";
+
+    }
+
+});
+
+
+/* =========================
+   모은 개수 표시
 ========================= */
 
 const collectionCount =
-    document.getElementById("collectionCount");
+    document.getElementById(
+        "collectionCount"
+    );
 
 
 collectionCount.textContent =
-    `퍼즐 조각 ${collectedPieces.length} / 6`;
+    `퍼즐 ${collectedPieces.length} / 6`;
 
 
 /* =========================
-   6개 완성 확인
+   6개 완성 여부
 ========================= */
 
-const completeButton =
-    document.getElementById("completeButton");
+const newImageButton =
+    document.getElementById(
+        "newImageButton"
+    );
 
 const backButton =
-    document.getElementById("backButton");
+    document.getElementById(
+        "backButton"
+    );
 
 
 if (collectedPieces.length === 6) {
 
-    completeButton.style.display = "inline-block";
+    /*
+       6개가 모두 모이면
+       새로운 이미지 버튼 표시
+    */
+
+    newImageButton.style.display =
+        "inline-block";
+
 
     /*
-       6개를 모두 모은 순간부터
        돌아가기 버튼 제거
     */
 
-    backButton.style.display = "none";
+    backButton.style.display =
+        "none";
 
 }
 
@@ -121,27 +134,31 @@ if (collectedPieces.length === 6) {
 function goBack() {
 
     /*
-       행성 페이지로 돌아감.
+       QR을 찍기 전의 행성 페이지로 돌아감.
 
-       카메라 기능을 다시 사용할 수 있도록
-       planet 페이지로 이동.
+       history.back()을 사용해서
+       원래 행성 페이지의 흐름으로 복귀.
     */
 
-    window.location.href =
-        "https://ssss102336.github.io/planet/";
+    if (window.history.length > 1) {
+
+        window.history.back();
+
+    } else {
+
+        window.location.href =
+            "https://ssss102336.github.io/planet/";
+
+    }
 
 }
 
 
 /* =========================
-   완성 이미지 보기
+   새로운 이미지 보기
 ========================= */
 
 function showNewImage() {
-
-    /*
-       두 이미지 중 하나를 랜덤으로 선택
-    */
 
     const images = [
 
@@ -151,6 +168,10 @@ function showNewImage() {
 
     ];
 
+
+    /*
+       0 또는 1을 랜덤으로 선택
+    */
 
     const randomIndex =
         Math.floor(
@@ -162,14 +183,32 @@ function showNewImage() {
         images[randomIndex];
 
 
+    const newImage =
+        document.getElementById(
+            "newImage"
+        );
+
+
     /*
-       이미지 넣기
+       이미지 표시
     */
 
-    const newImage =
-        document.getElementById("newImage");
-
     newImage.src =
+        selectedImage;
+
+
+    /*
+       이미지 저장 버튼도
+       같은 이미지로 연결
+    */
+
+    const saveButton =
+        document.getElementById(
+            "saveButton"
+        );
+
+
+    saveButton.href =
         selectedImage;
 
 
@@ -177,15 +216,43 @@ function showNewImage() {
        퍼즐 페이지 숨기기
     */
 
-    document.getElementById("piecePage")
-        .style.display = "none";
+    document.getElementById(
+        "puzzlePage"
+    ).style.display = "none";
 
 
     /*
-       완성 페이지 표시
+       완성 이미지 페이지 표시
     */
 
-    document.getElementById("completePage")
-        .style.display = "block";
+    document.getElementById(
+        "imagePage"
+    ).style.display = "block";
+
+}
+
+
+/* =========================
+   마지막 4층 안내
+========================= */
+
+function showFinalGuide() {
+
+    /*
+       완성 이미지 페이지 숨기기
+    */
+
+    document.getElementById(
+        "imagePage"
+    ).style.display = "none";
+
+
+    /*
+       마지막 안내 페이지 표시
+    */
+
+    document.getElementById(
+        "finalPage"
+    ).style.display = "block";
 
 }
