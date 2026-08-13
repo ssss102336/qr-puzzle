@@ -2,94 +2,263 @@
 <html lang="ko">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>어린왕자 퍼즐</title>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>어린왕자 퍼즐 이벤트</title>
 
     <link rel="stylesheet" href="style.css">
+
 </head>
+
 
 <body>
 
+
 <div class="container">
 
-    <!-- 퍼즐 조각을 찾았을 때 -->
 
-    <div id="piecePage">
+    <!-- =========================
+         퍼즐 페이지
+    ========================= -->
+
+    <section id="puzzlePage">
 
         <div class="small-title">
             THE LITTLE PRINCE
         </div>
 
-        <h1>퍼즐 조각을 찾았습니다.</h1>
+        <h1>
+            어린왕자의 퍼즐
+        </h1>
 
-        <p id="pieceMessage">
-            새로운 조각이 하나 모였습니다.
+
+        <p class="description">
+            행성에서 찾은 퍼즐 조각을<br>
+            하나씩 모아보세요.
         </p>
 
-        <!-- 지금 모은 조각 표시 -->
-        <div class="piece-preview">
-            <img id="pieceImage" src="" alt="퍼즐 조각">
+
+        <!-- =====================
+             퍼즐판
+        ====================== -->
+
+        <div class="puzzle-area">
+
+            <!-- 퍼즐판 -->
+
+            <img
+                src="images/puzzle_board.png.png"
+                id="board"
+                alt="퍼즐판">
+
+
+            <!-- 퍼즐 조각 -->
+
+            <img
+                src="images/King.2.png"
+                class="piece piece2"
+                alt="퍼즐 조각 2">
+
+
+            <img
+                src="images/business.5.png"
+                class="piece piece5"
+                alt="퍼즐 조각 5">
+
+
+            <img
+                src="images/drunk.4.png"
+                class="piece piece4"
+                alt="퍼즐 조각 4">
+
+
+            <img
+                src="images/geo.1.png"
+                class="piece piece1"
+                alt="퍼즐 조각 1">
+
+
+            <img
+                src="images/lamp.3.png"
+                class="piece piece3"
+                alt="퍼즐 조각 3">
+
+
+            <img
+                src="images/vain.6.png"
+                class="piece piece6"
+                alt="퍼즐 조각 6">
+
         </div>
 
-        <p id="collectionCount">
-            퍼즐 조각 1 / 6
+
+        <!-- 모은 개수 -->
+
+        <p
+            id="collectionCount"
+            class="collection-count">
+
+            퍼즐 0 / 6
+
         </p>
+
+
+        <!-- =====================
+             6개 완성 후 나타나는 버튼
+        ====================== -->
+
+        <button
+            id="newImageButton"
+            class="main-button"
+            onclick="showNewImage()"
+            style="display:none;">
+
+            새로운 이미지 보기
+
+        </button>
+
+
+        <!-- 돌아가기 -->
 
         <button
             id="backButton"
-            class="button"
+            class="back-button"
             onclick="goBack()">
+
             돌아가기
+
         </button>
 
-        <!-- 6개 완성 후 나타남 -->
-        <button
-            id="completeButton"
-            class="button complete-button"
-            onclick="showNewImage()"
-            style="display:none;">
-            새로운 이미지 보기
-        </button>
+    </section>
 
-    </div>
 
-    <!-- 완성 이미지 -->
 
-    <div
-        id="completePage"
+    <!-- =========================
+         완성 이미지
+    ========================= -->
+
+    <section
+        id="imagePage"
         style="display:none;">
 
         <div class="small-title">
             JOURNEY COMPLETE
         </div>
 
-        <h1>여정이 완성되었습니다.</h1>
 
-        <p>
-            흩어져 있던 조각들이<br>
+        <h1>
+            퍼즐이 완성되었습니다.
+        </h1>
+
+
+        <p class="description">
+
+            흩어져 있던 여섯 개의 조각이<br>
             하나의 모습으로 완성되었습니다.
+
         </p>
 
+
+        <!-- 랜덤 완성 이미지 -->
+
         <div class="new-image-box">
+
             <img
                 id="newImage"
                 src=""
-                alt="완성 이미지">
+                alt="완성된 이미지">
+
         </div>
 
-        <p class="complete-text">
-            어린왕자의 여정에서 모은<br>
-            여섯 개의 조각이 하나가 되었습니다.
+
+        <!-- 이미지 저장 -->
+
+        <a
+            id="saveButton"
+            class="main-button save-button"
+            href="#"
+            download>
+
+            이미지 저장하기
+
+        </a>
+
+
+        <button
+            class="main-button"
+            onclick="showFinalGuide()">
+
+            다음 여행으로
+
+        </button>
+
+    </section>
+
+
+
+    <!-- =========================
+         마지막 안내
+    ========================= -->
+
+    <section
+        id="finalPage"
+        style="display:none;">
+
+        <div class="small-title">
+            THE FINAL JOURNEY
+        </div>
+
+
+        <h1>
+            어린왕자의 마지막 여행을<br>
+            따라가 보세요.
+        </h1>
+
+
+        <p class="description">
+
+            지금까지 어린왕자가 만난 행성들을 지나<br>
+            하나의 여정을 완성했습니다.
+
+            <br><br>
+
+            이제 어린왕자의 여행은<br>
+            마지막 장소를 향해 나아갑니다.
+
         </p>
 
-    </div>
+
+        <div class="final-line">
+
+            <strong>
+                4층으로 올라가<br>
+                마지막 여행지를 찾아주세요.
+            </strong>
+
+        </div>
+
+
+        <p class="final-sub">
+
+            어린왕자의 여행은<br>
+            아직 끝나지 않았습니다.
+
+        </p>
+
+    </section>
+
 
 </div>
 
 
 <script src="script.js"></script>
 
+
 </body>
+
 </html>
