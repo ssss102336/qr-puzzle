@@ -1,3 +1,7 @@
+/* =========================
+   기본
+========================= */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -9,14 +13,16 @@ body {
 
     min-height: 100vh;
 
+    margin: 0;
+
     background:
         radial-gradient(
             circle at 50% 35%,
-            #17284b,
-            #08142d 65%
+            #18294c,
+            #08142d 70%
         );
 
-    color: #eee8dc;
+    color: white;
 
     font-family:
         "Noto Serif KR",
@@ -35,7 +41,7 @@ body {
 
 
 /* =========================
-   전체
+   전체 컨테이너
 ========================= */
 
 .container {
@@ -61,7 +67,7 @@ body {
 
     color: #aaa7b5;
 
-    margin-bottom: 28px;
+    margin-bottom: 20px;
 
 }
 
@@ -73,24 +79,62 @@ body {
 h1 {
 
     font-size:
-        clamp(25px, 7vw, 40px);
+        clamp(26px, 7vw, 40px);
 
     font-weight: 400;
 
     line-height: 1.5;
 
-    margin-bottom: 22px;
+    margin-bottom: 18px;
 
 }
 
 
-p {
+/* =========================
+   설명
+========================= */
 
-    font-size: 14px;
+.description {
+
+    font-size: 13px;
 
     line-height: 2;
 
-    color: #cbc6ce;
+    color: #c9c5ce;
+
+    margin-bottom: 28px;
+
+}
+
+
+/* =========================
+   퍼즐 영역
+========================= */
+
+.puzzle-area {
+
+    position: relative;
+
+    display: inline-block;
+
+    width: min(400px, 82vw);
+
+    line-height: 0;
+
+}
+
+
+/* =========================
+   퍼즐판
+========================= */
+
+#board {
+
+    display: block;
+
+    width: 100%;
+
+    height: auto;
 
 }
 
@@ -99,39 +143,55 @@ p {
    퍼즐 조각
 ========================= */
 
-.piece-preview {
+.piece {
 
-    width: min(72vw, 360px);
+    position: absolute;
 
-    margin: 35px auto 20px;
+    top: 0;
 
-}
-
-
-.piece-preview img {
+    left: 0;
 
     width: 100%;
 
     height: auto;
 
-    display: block;
+    display: none;
 
-    filter:
-        drop-shadow(
-            0 15px 30px
-            rgba(0,0,0,.35)
-        );
+    pointer-events: none;
 
 }
 
 
-#collectionCount {
+/*
+   모든 조각을 정확히
+   퍼즐판 위에 겹침
+*/
 
-    margin-top: 18px;
+.piece1,
+.piece2,
+.piece3,
+.piece4,
+.piece5,
+.piece6 {
+
+    top: 0;
+
+    left: 0;
+
+}
+
+
+/* =========================
+   퍼즐 개수
+========================= */
+
+.collection-count {
+
+    margin-top: 22px;
 
     font-size: 12px;
 
-    color: #9f9bab;
+    color: #aaa7b5;
 
 }
 
@@ -140,11 +200,13 @@ p {
    버튼
 ========================= */
 
-.button {
+.main-button {
 
-    margin-top: 35px;
+    display: inline-block;
 
-    padding: 14px 30px;
+    margin-top: 28px;
+
+    padding: 13px 27px;
 
     border-radius: 30px;
 
@@ -155,11 +217,13 @@ p {
     background:
         rgba(255,255,255,.08);
 
-    color: #eee8dc;
+    color: white;
+
+    text-decoration: none;
 
     font-family: inherit;
 
-    font-size: 14px;
+    font-size: 13px;
 
     cursor: pointer;
 
@@ -168,7 +232,7 @@ p {
 }
 
 
-.button:hover {
+.main-button:hover {
 
     background:
         rgba(255,255,255,.16);
@@ -180,50 +244,26 @@ p {
 
 
 /* =========================
-   완성 버튼
+   돌아가기
 ========================= */
 
-.complete-button {
+.back-button {
 
-    background:
-        rgba(238,232,220,.15);
+    display: block;
 
-}
+    margin: 18px auto 0;
 
+    border: none;
 
-/* =========================
-   완성 페이지
-========================= */
+    background: none;
 
-#completePage {
+    color: #8f94a5;
 
-    width: 100%;
+    font-family: inherit;
 
-    animation:
-        completeIn .8s ease;
+    font-size: 12px;
 
-}
-
-
-@keyframes completeIn {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-            translateY(20px);
-
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform:
-            translateY(0);
-
-    }
+    cursor: pointer;
 
 }
 
@@ -238,7 +278,8 @@ p {
 
     max-width: 500px;
 
-    margin: 35px auto;
+    margin:
+        30px auto;
 
 }
 
@@ -255,22 +296,61 @@ p {
 
     box-shadow:
         0 20px 60px
-        rgba(0,0,0,.4);
-
-}
-
-
-.complete-text {
-
-    margin-top: 20px;
-
-    color: #bdb8c1;
+        rgba(0,0,0,.45);
 
 }
 
 
 /* =========================
-   모바일
+   이미지 저장 버튼
+========================= */
+
+.save-button {
+
+    margin-right: 8px;
+
+}
+
+
+/* =========================
+   마지막 안내
+========================= */
+
+.final-line {
+
+    margin-top: 45px;
+
+    font-size: 17px;
+
+    line-height: 2;
+
+    color: #eee8dc;
+
+}
+
+
+.final-line strong {
+
+    font-weight: 500;
+
+}
+
+
+.final-sub {
+
+    margin-top: 35px;
+
+    font-size: 12px;
+
+    line-height: 2;
+
+    color: #8f94a5;
+
+}
+
+
+/* =========================
+   모바일 / 세로 화면
 ========================= */
 
 @media (max-width: 600px) {
@@ -278,7 +358,16 @@ p {
     body {
 
         padding:
-            35px 20px;
+            25px 18px;
+
+        align-items: center;
+
+    }
+
+
+    .container {
+
+        width: 100%;
 
     }
 
@@ -290,7 +379,7 @@ p {
     }
 
 
-    p {
+    .description {
 
         font-size: 13px;
 
@@ -299,19 +388,45 @@ p {
     }
 
 
-    .piece-preview {
+    /*
+       퍼즐판은 휴대폰 화면에 맞게
+       자동으로 축소됨
+    */
 
-        width: min(78vw, 340px);
+    .puzzle-area {
 
-        margin-top: 30px;
+        width: min(400px, 82vw);
 
     }
 
 
-    .button {
+    .collection-count {
+
+        margin-top: 18px;
+
+    }
+
+
+    .main-button {
+
+        font-size: 13px;
 
         padding:
-            13px 27px;
+            13px 25px;
+
+    }
+
+
+    .new-image-box {
+
+        width: 100%;
+
+    }
+
+
+    .final-line {
+
+        font-size: 16px;
 
     }
 
