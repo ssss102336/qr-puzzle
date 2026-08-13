@@ -3,214 +3,89 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>어린왕자의 퍼즐</title>
+    <title>어린왕자 퍼즐</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
-
 <body>
 
-<div class="page">
+<div class="container">
 
+    <!-- 퍼즐 조각을 찾았을 때 -->
 
-    <!-- =========================
-         수집 화면
-    ========================== -->
-
-    <main class="collection-screen" id="collectionScreen">
+    <div id="piecePage">
 
         <div class="small-title">
-            THE LITTLE PRINCE · JOURNEY
+            THE LITTLE PRINCE
         </div>
 
+        <h1>퍼즐 조각을 찾았습니다.</h1>
 
-        <!-- 현재 수집 상태 -->
-
-        <div class="piece-number" id="pieceNumber">
-            PUZZLE
-        </div>
-
-
-        <h1 id="mainTitle">
-            퍼즐 조각을 찾았습니다.
-        </h1>
-
-
-        <p class="description" id="description">
-            어린왕자의 여정에 새로운 조각이<br>
-            하나 더 모였습니다.
+        <p id="pieceMessage">
+            새로운 조각이 하나 모였습니다.
         </p>
 
-
-        <!-- 수집 현황 -->
-
-        <div class="collection-status">
-
-            <div class="status-title">
-                JOURNEY PIECES
-            </div>
-
-            <div
-                class="piece-dots"
-                id="pieceDots">
-            </div>
-
-            <div
-                class="status-count"
-                id="statusCount">
-                0 / 6
-            </div>
-
+        <!-- 지금 모은 조각 표시 -->
+        <div class="piece-preview">
+            <img id="pieceImage" src="" alt="퍼즐 조각">
         </div>
 
-
-        <!-- =====================
-             일반 상태
-        ====================== -->
+        <p id="collectionCount">
+            퍼즐 조각 1 / 6
+        </p>
 
         <button
-            class="back-button"
             id="backButton"
-            onclick="goBackToPlanet()"
-        >
-            ← 돌아가기
+            class="button"
+            onclick="goBack()">
+            돌아가기
         </button>
 
-
-        <!-- =====================
-             6개 완성 상태
-        ====================== -->
-
+        <!-- 6개 완성 후 나타남 -->
         <button
-            class="complete-button"
             id="completeButton"
-            onclick="showFinalImage()"
-        >
-            새로운 이미지 보기 →
+            class="button complete-button"
+            onclick="showNewImage()"
+            style="display:none;">
+            새로운 이미지 보기
         </button>
 
-
-    </main>
-
+    </div>
 
 
-    <!-- =========================
-         완성 이미지 화면
-    ========================== -->
+    <!-- 완성 이미지 -->
 
-    <main
-        class="final-screen"
-        id="finalScreen"
-    >
+    <div
+        id="completePage"
+        style="display:none;">
 
         <div class="small-title">
-            THE JOURNEY IS COMPLETE
+            JOURNEY COMPLETE
         </div>
 
+        <h1>여정이 완성되었습니다.</h1>
 
-        <h1>
-            여섯 개의 조각이<br>
-            하나의 이야기가 되었습니다.
-        </h1>
-
-
-        <p class="final-description">
-            어린왕자가 지나온 여정처럼<br>
-            흩어져 있던 조각들이 하나의 모습으로 완성되었습니다.
+        <p>
+            흩어져 있던 조각들이<br>
+            하나의 모습으로 완성되었습니다.
         </p>
 
-
-        <!-- 랜덤 이미지 -->
-
-        <div class="final-image-wrap">
-
+        <div class="new-image-box">
             <img
-                id="finalImage"
+                id="newImage"
                 src=""
-                alt="완성된 어린왕자의 이미지"
-            >
-
+                alt="완성 이미지">
         </div>
 
+        <p class="complete-text">
+            어린왕자의 여정에서 모은<br>
+            여섯 개의 조각이 하나가 되었습니다.
+        </p>
 
-        <!-- 이미지 저장 -->
-
-        <button
-            class="save-button"
-            onclick="saveImage()"
-        >
-            이미지 저장하기
-        </button>
-
-
-        <!-- 다음 여행 -->
-
-        <button
-            class="next-button"
-            onclick="showLastGuide()"
-        >
-            다음 여행으로 →
-        </button>
-
-
-    </main>
-
-
-
-    <!-- =========================
-         4층 안내
-    ========================== -->
-
-    <main
-        class="last-guide"
-        id="lastGuide"
-    >
-
-        <div class="guide-content">
-
-            <div class="small-title">
-                THE FINAL JOURNEY
-            </div>
-
-
-            <div class="guide-line"></div>
-
-
-            <h1>
-                어린왕자의<br>
-                마지막 여행을 따라가세요.
-            </h1>
-
-
-            <p>
-                여섯 개의 행성을 지나며<br>
-                어린왕자는 수많은 사람과 경험을 만났습니다.
-                <br><br>
-
-                그리고 이제 그 여행의<br>
-                <strong>마지막 종착지</strong>를 향해 나아갑니다.
-            </p>
-
-
-            <div class="guide-line"></div>
-
-
-            <p class="guide-sub">
-                이제 <strong>4층</strong>으로 올라가<br>
-                어린왕자의 마지막 여행을 만나보세요.
-            </p>
-
-        </div>
-
-    </main>
-
+    </div>
 
 </div>
 
