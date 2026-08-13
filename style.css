@@ -1,22 +1,20 @@
-/* =========================
-   기본 설정
-========================= */
-
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-html,
-body {
-    width: 100%;
-    min-height: 100%;
-}
 
 body {
 
-    background: #080d1c;
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            #17284b,
+            #08142d 65%
+        );
 
     color: #eee8dc;
 
@@ -25,97 +23,45 @@ body {
         "Noto Serif",
         serif;
 
-    overflow-x: hidden;
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 30px 20px;
 
 }
+
 
 /* =========================
    전체
 ========================= */
 
-.page {
-
-    min-height: 100vh;
+.container {
 
     width: 100%;
 
-    position: relative;
+    max-width: 600px;
+
+    text-align: center;
 
 }
 
 
 /* =========================
-   공통 작은 제목
+   작은 제목
 ========================= */
 
 .small-title {
 
     font-size: 10px;
 
-    letter-spacing: 4px;
+    letter-spacing: 5px;
 
-    color: #9b99a8;
+    color: #aaa7b5;
 
-    margin-bottom: 25px;
-
-}
-
-
-/* =========================
-   수집 화면
-========================= */
-
-.collection-screen {
-
-    min-height: 100vh;
-
-    width: 100%;
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-
-    align-items: center;
-
-    text-align: center;
-
-    padding:
-        45px 25px;
-
-    background:
-
-        radial-gradient(
-            circle at 50% 35%,
-            rgba(75, 83, 130, .25),
-            transparent 38%
-        ),
-
-        radial-gradient(
-            circle at 20% 80%,
-            rgba(100, 70, 100, .15),
-            transparent 30%
-        ),
-
-        #080d1c;
-
-}
-
-
-/* =========================
-   퍼즐 번호
-========================= */
-
-.piece-number {
-
-    font-size: 11px;
-
-    letter-spacing: 4px;
-
-    color: #77798b;
-
-    margin-bottom: 18px;
+    margin-bottom: 28px;
 
 }
 
@@ -124,170 +70,108 @@ body {
    제목
 ========================= */
 
-.collection-screen h1 {
+h1 {
 
     font-size:
         clamp(25px, 7vw, 40px);
 
     font-weight: 400;
 
-    line-height: 1.55;
+    line-height: 1.5;
 
-    letter-spacing: 1px;
-
-    word-break: keep-all;
+    margin-bottom: 22px;
 
 }
 
 
-/* =========================
-   설명
-========================= */
+p {
 
-.description {
-
-    margin-top: 20px;
-
-    font-size:
-        clamp(13px, 3.5vw, 16px);
+    font-size: 14px;
 
     line-height: 2;
 
-    color: #c8c4cb;
-
-    word-break: keep-all;
+    color: #cbc6ce;
 
 }
 
 
 /* =========================
-   수집 현황
+   퍼즐 조각
 ========================= */
 
-.collection-status {
+.piece-preview {
 
-    margin-top: 42px;
+    width: min(72vw, 360px);
 
-    width: min(90vw, 330px);
-
-    padding: 22px 20px;
-
-    border:
-
-        1px solid
-        rgba(255,255,255,.12);
-
-    border-radius: 16px;
-
-    background:
-        rgba(255,255,255,.035);
+    margin: 35px auto 20px;
 
 }
 
 
-.status-title {
+.piece-preview img {
 
-    font-size: 9px;
+    width: 100%;
 
-    letter-spacing: 3px;
+    height: auto;
 
-    color: #858493;
+    display: block;
 
-    margin-bottom: 18px;
-
-}
-
-
-.piece-dots {
-
-    display: flex;
-
-    justify-content: center;
-
-    gap: 12px;
+    filter:
+        drop-shadow(
+            0 15px 30px
+            rgba(0,0,0,.35)
+        );
 
 }
 
 
-.piece-dot {
+#collectionCount {
 
-    width: 9px;
+    margin-top: 18px;
 
-    height: 9px;
+    font-size: 12px;
 
-    border-radius: 50%;
+    color: #9f9bab;
+
+}
+
+
+/* =========================
+   버튼
+========================= */
+
+.button {
+
+    margin-top: 35px;
+
+    padding: 14px 30px;
+
+    border-radius: 30px;
 
     border:
         1px solid
         rgba(255,255,255,.35);
 
     background:
-        transparent;
-
-    transition: .4s ease;
-
-}
-
-
-.piece-dot.collected {
-
-    background: #eee8dc;
-
-    box-shadow:
-        0 0 10px
-        rgba(238,232,220,.5);
-
-}
-
-
-.status-count {
-
-    margin-top: 15px;
-
-    font-size: 12px;
-
-    color: #aaa7b5;
-
-}
-
-
-/* =========================
-   돌아가기
-========================= */
-
-.back-button {
-
-    margin-top: 35px;
-
-    padding:
-        13px 28px;
-
-    border-radius: 30px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.3);
-
-    background:
-        rgba(255,255,255,.05);
+        rgba(255,255,255,.08);
 
     color: #eee8dc;
 
     font-family: inherit;
 
-    font-size: 13px;
+    font-size: 14px;
 
     cursor: pointer;
 
-    transition: .3s;
+    transition: .3s ease;
 
 }
 
 
-.back-button:hover {
+.button:hover {
 
     background:
-        rgba(255,255,255,.12);
+        rgba(255,255,255,.16);
 
     transform:
         translateY(-2px);
@@ -301,113 +185,45 @@ body {
 
 .complete-button {
 
-    display: none;
-
-    margin-top: 35px;
-
-    padding:
-        15px 30px;
-
-    border: none;
-
-    border-radius: 30px;
-
-    background: #eee8dc;
-
-    color: #151923;
-
-    font-family: inherit;
-
-    font-size: 13px;
-
-    cursor: pointer;
-
-    transition: .3s;
-
-}
-
-
-.complete-button.show {
-
-    display: block;
-
-}
-
-
-.complete-button:hover {
-
-    transform:
-        translateY(-2px);
+    background:
+        rgba(238,232,220,.15);
 
 }
 
 
 /* =========================
-   완성 이미지 화면
+   완성 페이지
 ========================= */
 
-.final-screen {
-
-    display: none;
-
-    min-height: 100vh;
+#completePage {
 
     width: 100%;
 
-    padding:
-        55px 22px 60px;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    text-align: center;
-
-    background:
-
-        radial-gradient(
-            circle at 50% 30%,
-            rgba(75, 83, 130, .25),
-            transparent 40%
-        ),
-
-        #080d1c;
+    animation:
+        completeIn .8s ease;
 
 }
 
 
-.final-screen.show {
+@keyframes completeIn {
 
-    display: flex;
+    from {
 
-}
+        opacity: 0;
 
+        transform:
+            translateY(20px);
 
-.final-screen h1 {
+    }
 
-    font-size:
-        clamp(24px, 6.5vw, 38px);
+    to {
 
-    font-weight: 400;
+        opacity: 1;
 
-    line-height: 1.55;
+        transform:
+            translateY(0);
 
-    word-break: keep-all;
-
-}
-
-
-.final-description {
-
-    margin-top: 20px;
-
-    font-size: 13px;
-
-    line-height: 2;
-
-    color: #bbb7c0;
-
-    word-break: keep-all;
+    }
 
 }
 
@@ -416,288 +232,86 @@ body {
    완성 이미지
 ========================= */
 
-.final-image-wrap {
+.new-image-box {
 
     width: 100%;
 
     max-width: 500px;
 
-    margin-top: 35px;
-
-    padding: 12px;
-
-    border-radius: 14px;
-
-    background:
-        rgba(255,255,255,.05);
-
-    border:
-        1px solid
-        rgba(255,255,255,.12);
+    margin: 35px auto;
 
 }
 
 
-.final-image-wrap img {
-
-    display: block;
+.new-image-box img {
 
     width: 100%;
 
     height: auto;
 
-    max-height: 58vh;
+    display: block;
 
-    object-fit: contain;
+    border-radius: 4px;
 
-    border-radius: 8px;
+    box-shadow:
+        0 20px 60px
+        rgba(0,0,0,.4);
+
+}
+
+
+.complete-text {
+
+    margin-top: 20px;
+
+    color: #bdb8c1;
 
 }
 
 
 /* =========================
-   이미지 저장
+   모바일
 ========================= */
 
-.save-button {
+@media (max-width: 600px) {
 
-    margin-top: 25px;
-
-    padding:
-        13px 27px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.3);
-
-    border-radius: 30px;
-
-    background:
-        rgba(255,255,255,.06);
-
-    color: #eee8dc;
-
-    font-family: inherit;
-
-    font-size: 13px;
-
-    cursor: pointer;
-
-}
-
-
-.save-button:hover {
-
-    background:
-        rgba(255,255,255,.12);
-
-}
-
-
-/* =========================
-   다음 여행
-========================= */
-
-.next-button {
-
-    margin-top: 14px;
-
-    padding:
-        14px 30px;
-
-    border: none;
-
-    border-radius: 30px;
-
-    background: #eee8dc;
-
-    color: #171a25;
-
-    font-family: inherit;
-
-    font-size: 13px;
-
-    cursor: pointer;
-
-    transition: .3s;
-
-}
-
-
-.next-button:hover {
-
-    transform:
-        translateY(-2px);
-
-}
-
-
-/* =========================
-   4층 안내
-========================= */
-
-.last-guide {
-
-    display: none;
-
-    min-height: 100vh;
-
-    width: 100%;
-
-    padding:
-        50px 25px;
-
-    align-items: center;
-
-    justify-content: center;
-
-    text-align: center;
-
-    background:
-
-        radial-gradient(
-            circle at 50% 40%,
-            rgba(75, 83, 130, .28),
-            transparent 42%
-        ),
-
-        #080d1c;
-
-}
-
-
-.last-guide.show {
-
-    display: flex;
-
-}
-
-
-.guide-content {
-
-    width: 100%;
-
-    max-width: 600px;
-
-}
-
-
-.guide-line {
-
-    width: 42px;
-
-    height: 1px;
-
-    margin: 30px auto;
-
-    background:
-        rgba(238,232,220,.4);
-
-}
-
-
-.guide-content h1 {
-
-    font-size:
-        clamp(27px, 7vw, 45px);
-
-    font-weight: 400;
-
-    line-height: 1.55;
-
-    word-break: keep-all;
-
-}
-
-
-.guide-content p {
-
-    margin-top: 25px;
-
-    font-size:
-        clamp(13px, 3.5vw, 16px);
-
-    line-height: 2.1;
-
-    color: #c8c4cb;
-
-    word-break: keep-all;
-
-}
-
-
-.guide-content strong {
-
-    color: #eee8dc;
-
-    font-weight: 500;
-
-}
-
-
-.guide-sub {
-
-    font-size: 13px !important;
-
-    color: #9e9ba8 !important;
-
-}
-
-
-/* =========================
-   작은 휴대폰
-========================= */
-
-@media (max-width: 380px) {
-
-    .collection-screen {
+    body {
 
         padding:
-            35px 18px;
+            35px 20px;
 
     }
 
-    .collection-status {
 
-        margin-top: 32px;
+    h1 {
 
-    }
-
-    .piece-dots {
-
-        gap: 9px;
+        font-size: 27px;
 
     }
 
-    .piece-dot {
 
-        width: 8px;
+    p {
 
-        height: 8px;
+        font-size: 13px;
+
+        line-height: 1.9;
 
     }
 
-}
+
+    .piece-preview {
+
+        width: min(78vw, 340px);
+
+        margin-top: 30px;
+
+    }
 
 
-/* =========================
-   가로 화면 방지
-========================= */
-
-@media (orientation: landscape) and (max-height: 500px) {
-
-    .collection-screen {
-
-        min-height: 100vh;
+    .button {
 
         padding:
-            25px;
-
-    }
-
-    .collection-status {
-
-        margin-top: 20px;
+            13px 27px;
 
     }
 
